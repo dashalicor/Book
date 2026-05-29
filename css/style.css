@@ -1,0 +1,277 @@
+.github-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start
+}
+
+.github-href {
+    padding-right: 30px;
+    background-position: center right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: #2a2a2a;
+    margin-right: 10px
+}
+
+.mode__block {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: stretch;
+    border-bottom: solid 3px #dddddd;
+    padding-bottom: 3px
+}
+
+.mode__title {
+    padding: 5px 10px
+}
+
+@media only screen and (max-width: 1023px) {
+    .mode__block {
+        display: none
+    }
+}
+
+.mode {
+    display: inline-block;
+    padding: 4px 4px;
+    height: 40px;
+    box-sizing: border-box;
+    overflow: hidden
+}
+
+.pBlock {
+    background: none
+}
+
+.pBlock--mobile {
+    width: 390px;
+    height: 620px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    background-color: #dddddd;
+    border-radius: 4px;
+    background-size: cover
+}
+
+.pBlock--tablet {
+    width: 620px;
+    height: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    background-color: #dddddd;
+    border-radius: 4px;
+    background-size: cover
+}
+
+.pBlock--tablet-l {
+    width: 900px;
+    height: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    background-color: #dddddd;
+    border-radius: 4px;
+    background-size: cover
+}
+
+.mode--selected {
+    border-top: solid 2px #2a2a2a
+}
+
+pre {
+    margin-bottom: 0 !important
+}
+
+pre code.hljs {
+    display: block
+}
+
+code.hljs {
+    display: inline
+}
+
+span.new {
+    font-size: 90%;
+    color: #dc385f
+}
+
+.github-logo {
+    width: 40px;
+    display: block;
+    position: relative
+}
+
+.github-logo img {
+    max-width: 100%;
+    opacity: 0.9
+}
+
+.github-logo img:hover {
+    opacity: 1
+}
+
+.source {
+    width: 100%;
+    height: 90vh;
+    left: 0;
+    top: 0;
+    position: relative;
+    display: none
+}
+
+.source .source-block {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 301;
+    overflow: scroll
+}
+
+.source .source-block pre {
+    display: block;
+    position: relative
+}
+
+.source .source-block pre code {
+    font-size: 90%
+}
+
+.demo-block {
+    border-top: solid 1px #dcdcdc;
+    border-bottom: solid 1px #dcdcdc
+}
+
+.flip-book {
+    /* box-shadow: 0 0 20px 0 rgba(0,0,0,0.5); */
+    margin: 0 auto;
+    display: none;
+    z-index: 100
+}
+
+.html-book {
+    background-size: cover
+}
+
+.page {
+    padding: 20px;
+    background-color: #fdfaf7;
+    color: #785e3a;
+    border: solid 1px #c2b5a3;
+    overflow: hidden
+}
+
+.page .page-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch
+}
+
+/* ========== ИЗМЕНЕННЫЕ СТИЛИ ========== */
+
+/* Полоска ПОД заголовком (вместо под фото) */
+.page .page-content .page-header {
+    height: auto;
+    font-size: 100%;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: solid 1px #f4e8d7;  /* ← полоска здесь */
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+}
+
+/* Убираем старую полоску над текстом */
+.page .page-content .page-text {
+    height: auto;
+    flex-grow: 0;
+    font-size: 18px;
+    text-align: center;        /* текст по центру */
+    margin-top: 0;             /* убираем отступ сверху */
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+    border-top: none;          /* убираем полоску */
+}
+
+/* Фото — сохраняем пропорции, убираем пробелы */
+.page .page-content .page-image {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 65%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    vertical-align: bottom;    /* убирает пробел под картинкой */
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Футер */
+.page .page-content .page-footer {
+    height: 30px;
+    border-top: solid 1px #f4e8d7;
+    font-size: 80%;
+    color: #998466;
+    text-align: center;
+}
+
+/* ========== ОСТАЛЬНЫЕ СТИЛИ (без изменений) ========== */
+
+.page.--left {
+    border-right: 0;
+    box-shadow: inset -7px 0 30px -7px rgba(0,0,0,0.4)
+}
+
+.page.--right {
+    border-left: 0;
+    box-shadow: inset 7px 0 30px -7px rgba(0,0,0,0.4)
+}
+
+.page.--right .page-footer {
+    text-align: right
+}
+
+.page.hard {
+    background-color: #f2e8d9;
+    border: solid 1px #998466
+}
+
+.page.page-cover {
+    /* background-color: #e3d0b5; */
+    background-image: url('../img/1651772352_19-celes-club-p-yuzhnaya-koreya-priroda-krasivo-foto-21.jpg');
+    color: rgb(47, 128, 0);
+    border: solid 1px #998466
+}
+
+.page.page-cover h2 {
+    text-align: center;
+    padding-top: 15%;
+    font-size: 210%
+}
+
+.page.page-cover.page-cover-top {
+    box-shadow: inset 0px 0 30px 0px rgba(36,10,3,0.5),-2px 0 5px 2px rgba(0,0,0,0.4)
+}
+
+.page.page-cover.page-cover-bottom {
+    box-shadow: inset 0px 0 30px 0px rgba(36,10,3,0.5),10px 0 8px 0px rgba(0,0,0,0.4)
+}
+
+.page .page-content .page-footer {
+    text-align: right;   /* ← все номера справа */
+}
