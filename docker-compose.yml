@@ -1,8 +1,9 @@
-version: '3'
+version: '3.8'
 
 services:
-  flipbook:
+  pageflip:
     build: .
+    container_name: pageflip-book
     ports:
       - "8080:80"
-    container_name: flipbook
+    restart: unless-stopped
