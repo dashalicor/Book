@@ -253,7 +253,7 @@ span.new {
 
 .page.page-cover {
     /* background-color: #e3d0b5; */
-    background-image: url('../img/1651772352_19-celes-club-p-yuzhnaya-koreya-priroda-krasivo-foto-21.jpg');
+    background-image: url('img/cover/cover.jpg');
     color: rgb(47, 128, 0);
     border: solid 1px #998466
 }
