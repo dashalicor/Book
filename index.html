@@ -17,18 +17,19 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="flip-book" id="Book">
-            <div class="page-content book-cover-content">
-            
+   <div class="container">
+    <div class="flip-book" id="Book">
+        <div class="page-content book-cover-content position-relative">
+            <!-- Изображение -->
             <img class="cover-image" src="img/cover/cover.jpg" alt="Обложка">
-            
-            <div class="cover-text-container">
-				
-                <h3 class="cover-subtitle">Наша гордость - выпускники!</h3>
-            </div>
 
+            <!-- Блок с текстом, который будет наложен поверх -->
+            <div class="cover-text-container position-absolute top-0 start-0 end-0 bottom-0 d-flex flex-column justify-content-center align-items-center">
+                <h3 class="cover-subtitle text-white">Наша гордость - выпускники!</h3>
+            </div>
         </div>
+    </div>
+</div>
             <!-- PAGES ....-->
 
             <div class="page">
