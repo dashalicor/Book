@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # Конфигурация для проекта "pageflip"
+  # Конфигурация для Python-проекта (например, Flask/Django)
   pageflip-book:
     image: python:3.11-slim
     container_name: pageflip-book
@@ -9,12 +9,13 @@ services:
 
     command: >
       sh -c "
-      # --- Укажите здесь команды для сборки и запуска вашего Python-приложения ---
-      # Например, установка зависимостей и запуск Gunicorn или Flask:
+      # --- ВАЖНО ---
+      # Замените этот блок на реальные команды для вашего приложения.
       #
+      # Пример для Flask-приложения:
       # pip install --no-cache-dir -r requirements.txt && \
-      # gunicorn --bind 0.0.0.0:5000 --workers 2 app:app
-      echo 'Команда для запуска приложения не указана.'
+      # gunicorn --bind 0.0.0.0:5000 app:app
+      echo 'Пожалуйста, укажите команду для запуска вашего Python-приложения.'
       "
 
     ports:
@@ -22,31 +23,22 @@ services:
 
     environment:
       FLASK_ENV: production
-      SECRET_KEY: ${SECRET_KEY:?SECRET_KEY must be set}
-      DEFAULT_ADMIN_USERNAME: admin
+      SECRET_KEY: ${SECRET_KEY:?SECRET KEY must be set}
 
     env_file:
       - .env
 
     restart: unless-stopped
 
-  # Конфигурация для статического сайта на Nginx (на основе Dockerfile)
+  # Конфигурация для статического сайта с использованием вашего Dockerfile
   static-site-nginx:
     build: .
     container_name: static-site-nginx
-    volumes:
-      - ./:/app
-
-    command: >
-      sh -c "
-      # Эта команда заменяет стандартный процесс сборки из Dockerfile.
-      # Она копирует файлы из примонтированной папки в директорию Nginx
-      # и запускает его в foreground-режиме.
-      cp -a /app/. /usr/share/nginx/html/ && \
-      nginx -g 'daemon off;'
-      "
 
     ports:
-      - "${PORT:-80}:80"
+      - "${PORT:-80}:80" # Порт хоста : порт контейнера
+
+    volumes:
+      - ./:/app # Монтируем папку проекта для "горячей" перезагрузки
 
     restart: unless-stopped
