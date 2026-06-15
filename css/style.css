@@ -253,7 +253,7 @@ span.new {
 
 .page.page-cover {
     /* background-color: #e3d0b5; */
-    background-image: url('img/cover/cover.jpg');
+    background-image: url('../img/1651772352_19-celes-club-p-yuzhnaya-koreya-priroda-krasivo-foto-21.jpg');
     color: rgb(47, 128, 0);
     border: solid 1px #998466
 }
@@ -275,4 +275,49 @@ span.new {
 .page .page-content .page-footer {
     text-align: right;   /* ← все номера справа */
 }
+/* Контейнер обложки делаем относительным, чтобы позиционировать текст внутри */
+.book-cover-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
 
+/* Растягиваем картинку на всю площадь обложки */
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Картинка заполнит страницу без искажений */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Картинка на заднем плане */
+}
+
+/* Контейнер для текста поверх картинки */
+.cover-text-container {
+    position: relative;
+    z-index: 2; /* Текст поверх картинки */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрирует текст по вертикали */
+    align-items: center;     /* Центрирует текст по горизонтали */
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4); /* Темная пелена, чтобы белый текст читался на любом фоне */
+}
+
+/* Стили для заголовков на обложке */
+.cover-title {
+    color: #ffffff;
+    font-size: 32px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.cover-subtitle {
+    color: #f0f0f0;
+    font-size: 50px;
+}
