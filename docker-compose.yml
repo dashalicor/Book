@@ -1,9 +1,38 @@
 version: '3.8'
 
 services:
-  pageflip:
-    build: .
-    container_name: pageflip-book
+  web-app:
+    image: python:3.11-slim
+    container_name: my-python-app # Вы можете изменить имя контейнера
+    working_dir: /app
+
+    command: >
+      sh -c "
+      apt-get update &&
+      apt-get install -y --no-install-recommends git && # Устанавливаем git для клонирования репозитория
+      rm -rf /var/lib/apt/lists/* && # Чистим кэш менеджера пакетов для уменьшения размера образа
+      
+      # Очищаем рабочую директорию перед копированием нового кода
+      find /app -mindepth 1 -maxdepth 1 -exec rm -rf {} + &&
+      
+      # Клонируем репозиторий. Если переменные не заданы, используются значения по умолчанию.
+      git clone --depth 1 --branch \"$${GIT_BRANCH:-main}\" \"$${GIT_REPO_URL:-https://github.com/dashalicor/Book.git}\" /tmp/repo &&
+      
+      # Копируем содержимое репозитория в рабочую директорию
+      cp -a /tmp/repo/. /app/ &&
+      rm -rf /tmp/repo && # Удаляем временную папку с клоном
+      
+      # Устанавливаем Python-зависимости
+      pip install --no-cache-dir -r requirements.txt &&
+      
+      # Запускаем приложение через Gunicorn
+      gunicorn --bind 0.0.0.0:5000 --workers \"$${GUNICORN_WORKERS:-2}\" --threads \"$${GUNICORN_THREADS:-2}\" app:app
+      "
+
     ports:
-      - "8080:80"
-    restart: unless-stopped
+      - "${PORT:-5000}:5000" # По умолчанию порт 5000, но можно переопределить через переменную PORT
+
+    environment:
+      FLASK_ENV: production
+      SECRET_KEY: ${SECRET_KEY:?SECRET_KEY must be set} # Обязательная переменная
+      SESSION_COOKIE_SECURE: ${
