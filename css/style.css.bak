@@ -31,7 +31,7 @@
 
 @media only screen and (max-width: 1023px) {
     .mode__block {
-        display:none
+        display: none
     }
 }
 
@@ -150,7 +150,7 @@ span.new {
 }
 
 .flip-book {
-    box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
+    /* box-shadow: 0 0 20px 0 rgba(0,0,0,0.5); */
     margin: 0 auto;
     display: none;
     z-index: 100
@@ -177,37 +177,60 @@ span.new {
     align-items: stretch
 }
 
+/* ========== ИЗМЕНЕННЫЕ СТИЛИ ========== */
+
+/* Полоска ПОД заголовком (вместо под фото) */
 .page .page-content .page-header {
-    height: 30px;
+    height: auto;
     font-size: 100%;
     text-transform: uppercase;
-    text-align: center
+    text-align: center;
+    border-bottom: solid 1px #f4e8d7;  /* ← полоска здесь */
+    margin-bottom: 15px;
+    padding-bottom: 8px;
 }
 
+/* Убираем старую полоску над текстом */
+.page .page-content .page-text {
+    height: auto;
+    flex-grow: 0;
+    font-size: 18px;
+    text-align: center;        /* текст по центру */
+    margin-top: 0;             /* убираем отступ сверху */
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+    border-top: none;          /* убираем полоску */
+}
+
+/* Фото — сохраняем пропорции, убираем пробелы */
 .page .page-content .page-image {
-    height: 100%;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 65%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
     background-size: contain;
     background-position: center center;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+    vertical-align: bottom;    /* убирает пробел под картинкой */
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-.page .page-content .page-text {
-    height: 100%;
-    flex-grow: 1;
-    font-size: 80%;
-    text-align: justify;
-    margin-top: 10px;
-    padding-top: 10px;
-    box-sizing: border-box;
-    border-top: solid 1px #f4e8d7
-}
-
+/* Футер */
 .page .page-content .page-footer {
     height: 30px;
     border-top: solid 1px #f4e8d7;
     font-size: 80%;
-    color: #998466
+    color: #998466;
+    text-align: center;
 }
+
+/* ========== ОСТАЛЬНЫЕ СТИЛИ (без изменений) ========== */
 
 .page.--left {
     border-right: 0;
@@ -229,14 +252,15 @@ span.new {
 }
 
 .page.page-cover {
-    background-color: #e3d0b5;
-    color: #785e3a;
+    /* background-color: #e3d0b5; */
+    background-image: url('img/cover/cover.jpg');
+    color: rgb(47, 128, 0);
     border: solid 1px #998466
 }
 
 .page.page-cover h2 {
     text-align: center;
-    padding-top: 50%;
+    padding-top: 15%;
     font-size: 210%
 }
 
@@ -247,3 +271,8 @@ span.new {
 .page.page-cover.page-cover-bottom {
     box-shadow: inset 0px 0 30px 0px rgba(36,10,3,0.5),10px 0 8px 0px rgba(0,0,0,0.4)
 }
+
+.page .page-content .page-footer {
+    text-align: right;   /* ← все номера справа */
+}
+
