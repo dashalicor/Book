@@ -276,33 +276,3 @@ span.new {
     text-align: right;   /* ← все номера справа */
 }
 
-/* Делаем контейнер для страницы относительно позиционированным */
-.page-content.book-cover-content {
-    position: relative;
-    /* Важно задать высоту, чтобы позиционирование работало */
-    height: 100%; 
-}
-
-/* Стили для блока с текстом */
-.cover-text-container {
-    /* Растягиваем блок на всю площадь родителя */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    /* Используем Flexbox для центрирования текста */
-    display: flex;
-    justify-content: center; /* Центр по вертикали */
-    align-items: center;     /* Центр по горизонтали */
-
-    /* Добавляем полупрозрачный фон для лучшей читаемости текста */
-    background-color: rgba(0, 0, 0, 0.5); 
-}
-
-/* Стили для самого текста */
-.cover-subtitle {
-    color: white; /* Цвет текста */
-    text-align: center;
-}
