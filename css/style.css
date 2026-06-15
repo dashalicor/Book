@@ -252,6 +252,7 @@ span.new {
 }
 
 .page.page-cover {
+    /* background-color: #e3d0b5; */
     background-image: url('img/cover/cover.jpg');
     color: rgb(47, 128, 0);
     border: solid 1px #998466
@@ -274,3 +275,4 @@ span.new {
 .page .page-content .page-footer {
     text-align: right;   /* ← все номера справа */
 }
+
