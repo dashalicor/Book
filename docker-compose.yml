@@ -1,9 +1,52 @@
 version: '3.8'
 
 services:
-  pageflip:
-    build: .
+  # Конфигурация для проекта "pageflip"
+  pageflip-book:
+    image: python:3.11-slim
     container_name: pageflip-book
+    working_dir: /app
+
+    command: >
+      sh -c "
+      # --- Укажите здесь команды для сборки и запуска вашего Python-приложения ---
+      # Например, установка зависимостей и запуск Gunicorn или Flask:
+      #
+      # pip install --no-cache-dir -r requirements.txt && \
+      # gunicorn --bind 0.0.0.0:5000 --workers 2 app:app
+      echo 'Команда для запуска приложения не указана.'
+      "
+
     ports:
       - "8080:80"
+
+    environment:
+      FLASK_ENV: production
+      SECRET_KEY: ${SECRET_KEY:?SECRET_KEY must be set}
+      DEFAULT_ADMIN_USERNAME: admin
+
+    env_file:
+      - .env
+
+    restart: unless-stopped
+
+  # Конфигурация для статического сайта на Nginx (на основе Dockerfile)
+  static-site-nginx:
+    build: .
+    container_name: static-site-nginx
+    volumes:
+      - ./:/app
+
+    command: >
+      sh -c "
+      # Эта команда заменяет стандартный процесс сборки из Dockerfile.
+      # Она копирует файлы из примонтированной папки в директорию Nginx
+      # и запускает его в foreground-режиме.
+      cp -a /app/. /usr/share/nginx/html/ && \
+      nginx -g 'daemon off;'
+      "
+
+    ports:
+      - "${PORT:-80}:80"
+
     restart: unless-stopped
